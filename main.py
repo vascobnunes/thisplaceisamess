@@ -22,7 +22,7 @@ def talk(msg):
         import win32com.client as wincl
         speak = wincl.Dispatch("SAPI.SpVoice")
     else:
-        os.system(f"espeak {msg} -ven+f5 -k5 -s150 --stdout | aplay -D bluealsa")
+        os.system("espeak {} -ven+f5 -k5 -s150 --stdout | aplay -D bluealsa".format(msg))
 
 
 def diffImg(t0, t1, t2):

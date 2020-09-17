@@ -10,15 +10,17 @@ import numpy as np
 import platform
 import time
 import imutils
+import os
 # from skimage.metrics import structural_similarity as ssim
 
 print("Press Ctrl * C to EXIT")
 
-if platform.system() == "Windows":
-    import win32com.client as wincl
-    speak = wincl.Dispatch("SAPI.SpVoice")
-else:
-    
+def talk(msg):
+	if platform.system() == "Windows":
+	    import win32com.client as wincl
+	    speak = wincl.Dispatch("SAPI.SpVoice")
+	else:
+	    os.system("espeak \'"+msg+"\' -ven+f5 -k5 -s150 --stdout | aplay -D bluealsa")
 
 def diffImg(t0, t1, t2):
     d1 = cv2.absdiff(t2, t1)
@@ -102,11 +104,11 @@ def main1(tidy):
             print(thresh_w_tidy.sum())
             if (thresh_w_tidy.sum() > 500):
                 print("This place is a mess!")
-                speak.Speak("This place is a mess!")
+                talk("This place is a mess!")
                 # cv2.imwrite("thresh_w_tidy.png", thresh_w_tidy)
             else:
                 print("well done!")
-                speak.Speak("Well done! Everything seems tidy!")
+                talk("Well done! Everything seems tidy!")
             cv2.imwrite("thresh_w_tidy.png", thresh_w_tidy)
             time.sleep(10)
         t0 = t1

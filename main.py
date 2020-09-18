@@ -11,6 +11,7 @@ import platform
 import time
 import imutils
 import os
+import keyboard
 
 
 class Talker:
@@ -93,6 +94,6 @@ class Detector:
             t0 = cv2.GaussianBlur(t1, (21, 21), 0)
 
 
-# settidy()
 d1 = Detector(51, 0, 480, "t0.png", 500, 640)
+# d1.settidy()
 d1.detect()
